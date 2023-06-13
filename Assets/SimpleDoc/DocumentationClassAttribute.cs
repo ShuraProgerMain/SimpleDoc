@@ -2,7 +2,7 @@
 
 namespace Scripts
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class DocumentationClassAttribute : Attribute
     {
         public string Title { get; }

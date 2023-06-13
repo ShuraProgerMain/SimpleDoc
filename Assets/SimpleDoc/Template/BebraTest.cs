@@ -1,5 +1,16 @@
 ﻿namespace Scripts
 {
+    [DocumentationClass("Lebro", "Whey")]
+    public struct SameStruct
+    {
+        public int Value;
+        
+        public SameStruct(int value)
+        {
+            Value = value;
+        }
+    }
+    
     [DocumentationClass("Bebir", "Test fonk")]
     public class BebraTest
     {

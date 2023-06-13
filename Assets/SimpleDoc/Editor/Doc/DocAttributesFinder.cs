@@ -59,13 +59,14 @@ namespace Doc
                     
                     if (dict.TryGetValue(data.Title, out var value))
                     {
-                        value.Add(new DocumentationContentDto(currentAttribute.Parent.FullName, data.Description, methodContents));
+                        
+                        value.Add(new DocumentationContentDto($"{currentAttribute.Parent.FullName} with {currentAttribute.Parent.GetTypeConstructors()}", data.Description, methodContents));
                     }
                     else
                     {
                         dict.Add(data.Title, new List<DocumentationContentDto>()
                         {
-                            new(currentAttribute.Parent.GetTypeConstructors(), data.Description, methodContents)
+                            new($"{currentAttribute.Parent.FullName} with {currentAttribute.Parent.GetTypeConstructors()}", data.Description, methodContents)
                         });
                     }
                 }
