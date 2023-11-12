@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Scripts;
+using UnityEditor;
 using UnityEngine;
 
 namespace Doc
@@ -17,17 +18,14 @@ namespace Doc
     {
         public IReadOnlyList<DocumentationDto> FindAll()
         {
-            var unityAssembly = AppDomain.CurrentDomain.GetAssemblies().First(x => x.FullName.Contains("Assembly-CSharp"));
-
-            Debug.Log(unityAssembly.FullName);
-
-            var allTypes = unityAssembly.GetTypes();
-
+            var lebroTypes = TypeCache.GetTypesWithAttribute<DocumentationClassAttribute>().ToList();
+            var lebroMethods = TypeCache.GetMethodsWithAttribute<DocumentationMethodAttribute>().ToList();
+            
             var attributes = new List<AttributeDto>();
             var documentationDtos = new List<DocumentationDto>();
             var dict = new Dictionary<string, IList<DocumentationContentDto>>();
 
-            foreach (var t in allTypes)
+            foreach (var t in lebroTypes)
             {
                 var classAttributes = t.GetCustomAttributes(typeof(DocumentationClassAttribute));
 
@@ -41,10 +39,9 @@ namespace Doc
             {
                 if (currentAttribute.Attribute is DocumentationClassAttribute data)
                 {
-                    var methods = currentAttribute.Parent.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                     var methodContents = new List<DocumentationMethodContentDto>();
                     
-                    foreach (var methodInfo in methods)
+                    foreach (var methodInfo in lebroMethods)
                     {
                         var methodAttributes = methodInfo.GetCustomAttributes(typeof(DocumentationMethodAttribute));
 

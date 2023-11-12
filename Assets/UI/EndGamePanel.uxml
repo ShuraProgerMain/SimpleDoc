@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/EndGamePanel.uss?fileID=7433441132597879392&amp;guid=adb15efc24e9b544e9959855fac77b4c&amp;type=3#EndGamePanel" />
+    <ui:VisualElement class="endGamePanel" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="&lt;gradient=&quot;grdnt&quot;&gt;GREAT&lt;/gradient&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="labelName" style="transition-property: opacity; transition-duration: 0.3s; font-size: 106px; -unity-font-style: bold; -unity-text-align: upper-center; justify-content: flex-start; align-self: auto; align-items: center;" />
+    </ui:VisualElement>
+</ui:UXML>
