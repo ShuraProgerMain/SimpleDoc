@@ -12,7 +12,7 @@ namespace Editor
             var buildPlayerOptions = new BuildPlayerOptions()
             {
                 scenes = new []{ "Assets/Scenes/SampleScene.unity" },
-                locationPathName = "build/Windows",
+                locationPathName = "build/Windows.exe",
                 target = BuildTarget.StandaloneWindows64,
                 options = BuildOptions.None
                 
