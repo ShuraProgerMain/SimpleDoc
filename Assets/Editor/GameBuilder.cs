@@ -1,4 +1,6 @@
 ﻿using UnityEditor;
+using UnityEditor.AddressableAssets.Build;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ namespace Editor
         [MenuItem("CI / Windows Build")]
         public static void GitWindowsBuild()
         {
+            BuildAddressableContent();
             var buildPlayerOptions = new BuildPlayerOptions()
             {
                 scenes = new []{ "Assets/Scenes/SampleScene.unity" },
@@ -30,6 +33,17 @@ namespace Editor
             {
                 Debug.Log("Build failed");
             }
+        }
+        
+        static bool BuildAddressableContent() {
+            AddressableAssetSettings
+                .BuildPlayerContent(out var result);
+            var success = string.IsNullOrEmpty(result.Error);
+
+            if (!success) {
+                Debug.LogError("Addressables build error encountered: " + result.Error);
+            }
+            return success;
         }
     }
 }
