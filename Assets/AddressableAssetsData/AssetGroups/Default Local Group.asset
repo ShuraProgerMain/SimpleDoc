@@ -22,11 +22,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 885c4f87f36db464daec2195343daf02
-    m_Address: Assets/noiseTexture.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5d292d8126b4f094fa4c759de52aa037, type: 2}
   m_SchemaSet:
