@@ -17,19 +17,17 @@ namespace Scripts.TweenTest
                 staticMaterial, stealMiniGameConfig);
         }
 
-        private void Update()
+        private async void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                await _stealMiniGameController.InitMiniGame();
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _stealMiniGameController.InitMiniGame();
-                _stealMiniGameController.AdjustSize(1f, .3f, 
-                    target: this, target => target.OnComplete());
+                _stealMiniGameController.FixedRhombusPosition();
             }
-        }
-
-        private void OnComplete()
-        {
-            _stealMiniGameController.AdjustSize(.3f, 1f, this, default);
         }
     }
 }

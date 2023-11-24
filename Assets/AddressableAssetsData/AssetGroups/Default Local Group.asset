@@ -17,10 +17,23 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c2e4c937359c2b440a90a7b4355ca1ae
   m_SerializeEntries:
-  - m_GUID: cb7ea9f6e4be2d14db54a18f095ca6fe
-    m_Address: Assets/noiseTexture2.png
+  - m_GUID: 6daf300790aa76d47bed2ef51c2c9aa1
+    m_Address: WinStyle
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - RhombusStyles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a868fd705a6e2ae40b371fa9305d01e3
+    m_Address: DefaultStyle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RhombusStyles
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 646cb2fcce06a4e4d85cf27b7302e0a9
+    m_Address: LoseStyle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RhombusStyles
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5d292d8126b4f094fa4c759de52aa037, type: 2}

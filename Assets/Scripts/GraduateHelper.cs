@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Utilities.Helpers
+namespace Scripts
 {
     public static class GraduateHelper
     {
-        public static async void Graduate(Action<float> action, float duration, bool reverse = false)
+        public static async void Graduate(Action<float> action, float duration, bool reverse = false, 
+            CancellationToken token = default)
         {
             try
             {
@@ -19,10 +21,15 @@ namespace Utilities.Helpers
             }
         }
         
-        public static async Task GraduateAsync(Action<float> action, float duration, bool reverse = false)
+        public static async Task GraduateAsync(Action<float> action, float duration, bool reverse = false, 
+            CancellationToken token = default)
         {
             for (var time = 0f; time < duration; time += Time.deltaTime)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
                 var ratio = time / duration;
                 ratio = reverse ? 1f - ratio : ratio;
 

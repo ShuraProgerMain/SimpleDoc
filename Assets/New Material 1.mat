@@ -12,10 +12,11 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ISTOGGLED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -33,12 +34,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ExternalLineSize: 0.9
-    - _InternalLineSize: 0.8
+    - _ExternalLineSize: 4.8475156
+    - _InternalLineSize: 4.7475157
+    - _IsToggled: 1
     - _PixelGlow: 0.1
     - _SomeValue: 0.374
     - _ThicknessSize: 0
+    - _isToggled: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorThickness: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
+    - _ColorThickness: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4124951c9659fec44a86236e293f5615, type: 3}
   m_Name: Steal
   m_EditorClassIdentifier: 
-  <MovableLineWidth>k__BackingField: 0.2
-  <MaxExternalRhombusSize>k__BackingField: 5
+  <MovableLineWidth>k__BackingField: 0.1
+  <MaxExternalRhombusSize>k__BackingField: 4
+  <MaxZoomRhombusSize>k__BackingField: 5
   <RhombusWidthProgress>k__BackingField:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 4.5
-      inSlope: -0.42
-      outSlope: -0.42
+      value: 4
+      inSlope: -0.37
+      outSlope: -0.37
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -29,8 +30,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 10
       value: 0.3
-      inSlope: -0.42
-      outSlope: -0.42
+      inSlope: -0.37
+      outSlope: -0.37
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

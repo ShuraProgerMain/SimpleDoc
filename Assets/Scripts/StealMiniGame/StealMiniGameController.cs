@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AddressableExtensions;
 using Scripts.StealMiniGame.Configs;
 using UnityEngine;
-using Utilities.Helpers;
+using UnityEngine.AddressableAssets;
 using Random = UnityEngine.Random;
 
 namespace Scripts.StealMiniGame
@@ -13,6 +18,9 @@ namespace Scripts.StealMiniGame
         private readonly StealMiniGameConfig _stealMiniGameConfig;
         private static readonly int InternalLineSize = Shader.PropertyToID("_InternalLineSize");
         private static readonly int ExternalLineSize = Shader.PropertyToID("_ExternalLineSize");
+        private static readonly int RhombusColor = Shader.PropertyToID("_Color");
+        private static readonly int ThicknessColor = Shader.PropertyToID("_ColorThickness");
+        
 
         public StealMiniGameController(Material resizableObject, Material staticObject, StealMiniGameConfig stealMiniGameConfig)
         {
@@ -22,8 +30,21 @@ namespace Scripts.StealMiniGame
         }
 
         private float _iteration;
+        private Dictionary<string, RhombusStyleConfig> _rhombusStyleConfigs;
 
-        public void InitMiniGame()
+        public async Task InitMiniGame()
+        {
+            _rhombusStyleConfigs = (await Addressables.LoadAssetsAsync<RhombusStyleConfig>("RhombusStyles", o =>
+                                      {
+                                          Debug.Log(o.name);
+                                      }).Task).ToDictionary(x => x.name);
+                
+            SetViewState(_rhombusStyleConfigs[DefaultLocalGroup.Defaultstyle]);
+            InitZoneRhombus();
+            await InitZoomRhombus();
+        }
+
+        private void InitZoneRhombus()
         {
             var someValue = Random.Range(_iteration, _iteration + 1f);
             var internalSize = Random.Range(.5f, _stealMiniGameConfig.MaxExternalRhombusSize
@@ -31,16 +52,34 @@ namespace Scripts.StealMiniGame
 
             var externalSize = internalSize + _stealMiniGameConfig.RhombusWidthProgress.Evaluate(someValue);
 
-            Debug.Log($"This is ExternalSize: {externalSize} | and | InternalSize {internalSize} with iteration => {someValue}");
             _staticObject.SetFloat(InternalLineSize, internalSize);
             _staticObject.SetFloat(ExternalLineSize, externalSize);
 
             _iteration += 0.1f;
         }
-        
-        public void AdjustSize<T>(float startSize, float finalSize, T target, Action<T> onComplete)
+
+        private CancellationTokenSource _cancellationToken;
+        private async Task InitZoomRhombus()
         {
-            GraduateHelper.Graduate(Progress, 1f);
+            _cancellationToken = new CancellationTokenSource();
+            await AdjustSize(_stealMiniGameConfig.MaxZoomRhombusSize, .1f, 
+                    target: this, target => target.SomeD(), _cancellationToken.Token);
+        }
+
+        public void FixedRhombusPosition()
+        {
+            SetViewState(_rhombusStyleConfigs[DefaultLocalGroup.Losestyle]);
+            _cancellationToken.Cancel();
+        }
+
+        private void SomeD()
+        {
+            Debug.Log("Some info");
+        }
+        
+        public async Task AdjustSize<T>(float startSize, float finalSize, T target, Action<T> onComplete, CancellationToken token)
+        {
+            await GraduateHelper.GraduateAsync(Progress, 10f, token: token);
             
             return;
 
@@ -56,6 +95,13 @@ namespace Scripts.StealMiniGame
                     onComplete?.Invoke(target);
                 }
             }
+        }
+
+        private void SetViewState(RhombusStyleConfig styleConfig)
+        {
+            _staticObject.SetColor(RhombusColor, styleConfig.StaticRhombusBackgroundColor);
+            _staticObject.SetColor(ThicknessColor, styleConfig.StaticRhombusOutlineColor);
+            _resizableObject.SetColor(RhombusColor, styleConfig.MovableRhombusColor);
         }
     }
 }

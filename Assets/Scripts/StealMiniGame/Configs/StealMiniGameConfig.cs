@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scripts.StealMiniGame.Configs
 {
-    [CreateAssetMenu(menuName = "Mini Games / Steal")]
+    [CreateAssetMenu(menuName = "Mini Games / StealConfig")]
     public class StealMiniGameConfig : ScriptableObject
     {
         [field: SerializeField]
@@ -12,6 +12,10 @@ namespace Scripts.StealMiniGame.Configs
         [field: SerializeField]
         [field: Range(0f, 5f)]
         public float MaxExternalRhombusSize { get; private set; }
+        
+        [field: SerializeField]
+        [field: Range(0f, 5f)]
+        public float MaxZoomRhombusSize { get; private set; }
         
         [field: SerializeField]
         public AnimationCurve RhombusWidthProgress { get; private set; }

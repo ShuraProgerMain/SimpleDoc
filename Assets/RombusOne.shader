@@ -6,6 +6,7 @@ Shader "Custom/RhombusSprite" {
         [HDR]_Color ("Color", Color) = (1, 1, 1, 0)
         _ColorThickness ("ColorThickness", Color) = (1, 1, 1, 0)
         _ThicknessSize ("ThicknessSize", Range(0, 1)) = 1
+        [MaterialToggle] _IsToggled("IsToggle", Float) = 0
     }
 
     SubShader {
@@ -37,6 +38,7 @@ Shader "Custom/RhombusSprite" {
             uniform fixed4 _Color;
             uniform fixed4 _ColorThickness;
             uniform half _ThicknessSize;
+            uniform float _IsToggled;
 
             v2f vert (appdata_t v) {
                 v2f o;
@@ -58,9 +60,17 @@ Shader "Custom/RhombusSprite" {
 
                 float2 uv = i.uv * tiling + offset;
                 uv = frac(uv);
-                
-                fixed4 result = tex2D(_MainTex, uv) + _Color;
-                result.a *= _Color.a;
+
+                fixed4 result;
+                if(_IsToggled > 0)
+                {
+                    result = tex2D(_MainTex, uv) * _Color;
+                }
+                else
+                {
+                    result = tex2D(_MainTex, uv) + _Color;
+                    result.a *= _Color.a;
+                }
                 
                 if (distance.x / rhombusWidth + distance.y / rhombusHeight < _InternalLineSize) {
                     discard;
