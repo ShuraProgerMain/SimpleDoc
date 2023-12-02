@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ExternalLineSize: 4.25
-    - _InternalLineSize: 0.5562504
+    - _ExternalLineSize: 4.415726
+    - _InternalLineSize: 0.68829936
     - _IsToggled: 0
     - _PixelGlow: 0
     - _SomeValue: 0.374
@@ -47,8 +47,8 @@ Material:
     - internal_line_size: 1.29
     - thickness_size: 0
     m_Colors:
-    - _Color: {r: 0.58431375, g: 0.02773665, b: 0, a: 0.6117647}
-    - _ColorThickness: {r: 0.028301895, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.58431375, g: 0.3280929, b: 0, a: 0.6117647}
+    - _ColorThickness: {r: 0.509434, g: 0.20201692, b: 0, a: 1}
     - color_thickness: {r: 1, g: 1, b: 1, a: 1}
     - rhombus_color: {r: 0.05724919, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []

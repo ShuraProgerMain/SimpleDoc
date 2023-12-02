@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,3 +52,4 @@ namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
         }
     }
 }
+#endif

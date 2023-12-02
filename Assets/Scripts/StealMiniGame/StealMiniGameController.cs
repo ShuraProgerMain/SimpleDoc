@@ -22,6 +22,12 @@ namespace Scripts.StealMiniGame
         private static readonly int ThicknessColor = Shader.PropertyToID("_ColorThickness");
         
 
+        private Vector2 _currentSize = new();
+        private float _lastExternalLineSize;
+
+        public event Action OnWin;
+        public event Action OnLose;
+        
         public StealMiniGameController(Material resizableObject, Material staticObject, StealMiniGameConfig stealMiniGameConfig)
         {
             _resizableObject = resizableObject;
@@ -52,6 +58,7 @@ namespace Scripts.StealMiniGame
 
             var externalSize = internalSize + _stealMiniGameConfig.RhombusWidthProgress.Evaluate(someValue);
 
+            _currentSize.Set(externalSize, internalSize);
             _staticObject.SetFloat(InternalLineSize, internalSize);
             _staticObject.SetFloat(ExternalLineSize, externalSize);
 
@@ -68,24 +75,39 @@ namespace Scripts.StealMiniGame
 
         public void FixedRhombusPosition()
         {
-            SetViewState(_rhombusStyleConfigs[DefaultLocalGroup.Losestyle]);
             _cancellationToken.Cancel();
         }
 
         private void SomeD()
         {
-            Debug.Log("Some info");
+            if (_lastExternalLineSize < _currentSize.x && _lastExternalLineSize > _currentSize.y)
+            {
+                OnWin?.Invoke();
+                SetViewState(_rhombusStyleConfigs[DefaultLocalGroup.Winstyle]);
+            }
+            else
+            {
+                SetViewState(_rhombusStyleConfigs[DefaultLocalGroup.Losestyle]);
+                OnLose?.Invoke();
+            }
         }
-        
-        public async Task AdjustSize<T>(float startSize, float finalSize, T target, Action<T> onComplete, CancellationToken token)
+
+
+        private async Task AdjustSize<T>(float startSize, float finalSize, T target, Action<T> onComplete, CancellationToken token)
         {
             await GraduateHelper.GraduateAsync(Progress, 10f, token: token);
-            
+
+            if (token.IsCancellationRequested)
+            {
+                onComplete?.Invoke(target);
+            }
             return;
 
             void Progress(float progress)
             {
                 var cSize = Mathf.Lerp(startSize, finalSize, progress);
+
+                _lastExternalLineSize = cSize;
                 
                 _resizableObject.SetFloat(InternalLineSize, cSize - _stealMiniGameConfig.MovableLineWidth);
                 _resizableObject.SetFloat(ExternalLineSize, cSize);

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: grdnt
+  m_Name: LoseGradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 1, g: 0.80561215, b: 0.23137254, a: 1}
-  topRight: {r: 1, g: 0.8039216, b: 0.23137255, a: 1}
-  bottomLeft: {r: 1, g: 0.69716567, b: 0.23137254, a: 1}
-  bottomRight: {r: 1, g: 0.69803923, b: 0.23137255, a: 1}
+  topLeft: {r: 1, g: 0.31581396, b: 0.23137254, a: 1}
+  topRight: {r: 1, g: 0.31764707, b: 0.23137255, a: 1}
+  bottomLeft: {r: 0.8490566, g: 0.2624082, b: 0.18823424, a: 1}
+  bottomRight: {r: 0.8509804, g: 0.2627451, b: 0.1882353, a: 1}

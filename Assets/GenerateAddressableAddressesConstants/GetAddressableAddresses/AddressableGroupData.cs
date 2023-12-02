@@ -1,4 +1,6 @@
-﻿namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
+﻿#if UNITY_EDITOR
+
+namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
 {
     public readonly struct AddressableGroupData
     {
@@ -12,3 +14,5 @@
         }
     }
 }
+
+#endif

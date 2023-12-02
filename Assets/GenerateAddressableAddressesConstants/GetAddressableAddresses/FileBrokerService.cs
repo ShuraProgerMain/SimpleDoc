@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -32,3 +33,5 @@ namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
         }
     }
 }
+
+#endif

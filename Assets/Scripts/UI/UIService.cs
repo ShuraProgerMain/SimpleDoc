@@ -18,10 +18,10 @@ namespace Scripts.UI
             _label = resultPanel.rootVisualElement.Q<Label>("Label");
         }
 
-        private async void Start()
-        {
-            var bgConfig = await backgroundConfig.LoadAssetAsync<BackgroundConfig>().Task;
-            _background.style.backgroundImage = new StyleBackground(bgConfig.Background);
-        }
+        // private async void Start()
+        // {
+        //     var bgConfig = await backgroundConfig.LoadAssetAsync<BackgroundConfig>().Task;
+        //     _background.style.backgroundImage = new StyleBackground(bgConfig.Background);
+        // }
     }
 }

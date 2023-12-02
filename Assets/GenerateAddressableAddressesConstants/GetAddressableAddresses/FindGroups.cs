@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,8 +43,12 @@ namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
 
         private string FormatAddress(string address)
         {
+            if (string.IsNullOrEmpty(address))
+            {
+                return address;
+            }
             var currentAddress = address.Split("/")[^1]; 
-            return currentAddress.AsSpan(0, currentAddress.IndexOf('.')).ToString();
+            return currentAddress.Any(x => x == '.') ? currentAddress.AsSpan(0, currentAddress.IndexOf('.')).ToString() : currentAddress;
         }
 
         private void SimplifyAddressableName(AddressableAssetEntry[] actualEntries, int index, string newAddress)
@@ -51,3 +57,5 @@ namespace GenerateAddressableAddressesConstants.GetAddressableAddresses
         }
     }
 }
+
+#endif

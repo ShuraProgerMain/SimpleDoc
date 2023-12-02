@@ -315,6 +315,7 @@ MonoBehaviour:
   stealMaterial: {fileID: 2100000, guid: 88a72310932ddd2459013edb16d71c48, type: 2}
   staticMaterial: {fileID: 2100000, guid: d418417a08f5b76499a3c207dd874666, type: 2}
   stealMiniGameConfig: {fileID: 11400000, guid: 2ed0c78236665324f9a3343bf0be344f, type: 2}
+  uiDocument: {fileID: 0}
 --- !u!1 &1381133140
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1945029597
 MonoBehaviour:
   m_ObjectHideFlags: 0

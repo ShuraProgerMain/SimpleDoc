@@ -34,14 +34,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ExternalLineSize: 4.8475156
-    - _InternalLineSize: 4.7475157
+    - _ExternalLineSize: 4.241427
+    - _InternalLineSize: 4.141427
     - _IsToggled: 1
     - _PixelGlow: 0.1
     - _SomeValue: 0.374
     - _ThicknessSize: 0
     - _isToggled: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
+    - _Color: {r: 1, g: 0.6492849, b: 0.25, a: 1}
     - _ColorThickness: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
