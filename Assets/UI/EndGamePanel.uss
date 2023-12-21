@@ -20,6 +20,20 @@
 }
 
 .labelName {
-    -unity-font-definition: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans%20SDF.asset?fileID=11400000&guid=7102cae69fa78f84282d4cfe797cd712&type=2#LiberationSans SDF');
+    -unity-font-definition: url('project://database/Assets/Resources/Fonts%20&%20Materials/LiberationSans%20SDF.asset?fileID=11400000&guid=7102cae69fa78f84282d4cfe797cd712&type=2#LiberationSans SDF');
     color: rgb(255, 255, 255);
+    transition-property: font-size;
+    transition-duration: 0s;
+    font-size: 0;
+    letter-spacing: 10px;
+    background-image: none;
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-font-style: bold;
+    overflow: visible;
+}
+
+.showEffect {
+    font-size: 105px;
+    transition-property: font-size;
+    transition-duration: 0.5s;
 }

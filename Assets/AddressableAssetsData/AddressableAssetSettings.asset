@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: c2e4c937359c2b440a90a7b4355ca1ae
   m_currentHash:
     serializedVersion: 2
-    Hash: 3617e248032484207290091e20e9248b
+    Hash: 3c0c6c615f9c540c3db1e83b89b2ebeb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - RhombusStyles
+    - Colors
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: eb58466ddfa06fd429316f4bdf7c3b10, type: 2}

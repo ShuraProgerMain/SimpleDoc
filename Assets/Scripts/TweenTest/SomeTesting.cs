@@ -1,8 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AddressableExtensions;
 using Scripts.StealMiniGame;
 using Scripts.StealMiniGame.Configs;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace Scripts.TweenTest
@@ -17,13 +19,21 @@ namespace Scripts.TweenTest
         private StealMiniGameController _stealMiniGameController;
         
         //UI
+        private const string ShowEffectClass = "showEffect";
+        
         private VisualElement _endGamePanel;
         private Label _endGameText;
+        private Dictionary<string, ColorConfig> _colorConfigs;
 
-        private void OnEnable()
+        private async void OnEnable()
         {
             _endGameText = uiDocument.rootVisualElement.Q<Label>("Label");
             _endGamePanel = uiDocument.rootVisualElement.Q<VisualElement>("EndGamePanel");
+            
+            _colorConfigs = (await Addressables.LoadAssetsAsync<ColorConfig>("Colors", o =>
+                                      {
+                                          Debug.Log(o.name);
+                                      }).Task).ToDictionary(x => x.name);
         }
 
         private void Awake()
@@ -38,7 +48,8 @@ namespace Scripts.TweenTest
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                await _stealMiniGameController.InitMiniGame();
+                ResetUI();
+                await _stealMiniGameController.InitMiniGame(); 
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -47,22 +58,41 @@ namespace Scripts.TweenTest
             }
         }
 
+
         private void OnWinUI()
         {
-            _endGameText.text = GetGradientString(Gradients.Wingradient, "GREAT");
+            var textColors = _colorConfigs[Colors.Wincolors];
+            
+            UpdateLabelState(_endGameText, textColors, "GREAT");
+            
             _endGamePanel.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
         }
-
+        private void ResetUI()
+        {
+            _endGamePanel.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
+            _endGameText.RemoveFromClassList(ShowEffectClass);
+        }
+        
         private void OnLoseUI()
         {
-            _endGameText.text = GetGradientString(Gradients.Losegradient, "LOSE");
+            var textColors = _colorConfigs[Colors.Losecolors];
+            
+            UpdateLabelState(_endGameText, textColors, "LOSE");
+            
             _endGamePanel.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
         }
 
-        private string GetGradientString(string gradientName, string inGradientText)
+        private void UpdateLabelState(Label label, ColorConfig textColors, string labelText)
         {
-            // <gradient="grdnt">GREAT</gradient>
-            return $"<gradient=\"{gradientName}\">{inGradientText}</gradient>";
+            label.text = labelText;
+            label.style.color = new StyleColor(textColors.Color);
+            label.style.textShadow = new StyleTextShadow(new TextShadow
+            {
+                blurRadius = 10,
+                color = textColors.AlternativeColor
+            });
+            
+            label.AddToClassList(ShowEffectClass);
         }
     }
 }

@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Gradients
+  m_Name: Colors
   m_EditorClassIdentifier: 
-  m_GroupName: Gradients
+  m_GroupName: Colors
   m_Data:
     m_SerializedData: []
   m_GUID: c79bf19984e8b9c47b7e8af2aeb7bcd2
   m_SerializeEntries:
-  - m_GUID: 252604cec91aaaa49b7b1b2d593a33d4
-    m_Address: LoseGradient
+  - m_GUID: 53900e98e525e984d88b0d545b3e976a
+    m_Address: LoseColors
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Colors
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1adba9982aaeed84f9af859c37da8694
-    m_Address: WinGradient
+  - m_GUID: cc8874dfe9ac29545b13812be2471814
+    m_Address: WinColors
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Colors
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5d292d8126b4f094fa4c759de52aa037, type: 2}

@@ -34,8 +34,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ExternalLineSize: 4.241427
-    - _InternalLineSize: 4.141427
+    - _ExternalLineSize: 4.295198
+    - _InternalLineSize: 4.195198
     - _IsToggled: 1
     - _PixelGlow: 0.1
     - _SomeValue: 0.374
